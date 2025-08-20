@@ -9,7 +9,7 @@ export default defineContentConfig({
   markdown: {
     remarkPlugins: [
       'remark-supersub'
-    ],
+    ]
   }
 })
 
