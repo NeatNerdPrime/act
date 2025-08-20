@@ -5,6 +5,14 @@ const colorEnum = z.enum(['primary', 'secondary', 'neutral', 'error', 'warning',
 const sizeEnum = z.enum(['xs', 'sm', 'md', 'lg', 'xl'])
 const orientationEnum = z.enum(['vertical', 'horizontal'])
 
+export default defineContentConfig({
+  markdown: {
+    remarkPlugins: [
+      'remark-supersub'
+    ],
+  }
+})
+
 const createBaseSchema = () => z.object({
   title: z.string().nonempty(),
   description: z.string().nonempty()
