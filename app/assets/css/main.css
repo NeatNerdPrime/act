@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "@nuxt/ui-pro";
+@import "./superscript.css";
 
 @source "../../../content/**/*";
 

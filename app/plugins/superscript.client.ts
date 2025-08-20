@@ -1,0 +1,373 @@
+// Enhanced Superscript Plugin for Nuxt 3 - TypeScript Version
+// Handles superscript/subscript for trademarks, ordinals, chemical formulas, etc.
+
+interface SuperscriptConfig {
+  symbols: {
+    trademark: string[]
+    registered: string[]
+    copyright: string[]
+    ordinals: boolean
+  }
+  selectors: {
+    include: string[]
+    exclude: string[]
+  }
+  performance: {
+    debounce: number
+    batchSize: number
+    delay: number
+  }
+}
+
+interface TextPart {
+  type: 'text' | 'super' | 'sub'
+  content: string
+}
+
+interface PatternSet {
+  trademark: RegExp
+  registered: RegExp
+  copyright: RegExp
+  ordinals: RegExp
+  chemicals: RegExp
+  mathSuper: RegExp
+  mathSub: RegExp
+}
+
+export default defineNuxtPlugin((nuxtApp) => {
+  // Configuration
+  const config: SuperscriptConfig = {
+    symbols: {
+      trademark: ['™', '(TM)', 'TM'],
+      registered: ['®', '(R)'],
+      copyright: ['©', '(C)'],
+      ordinals: true
+    },
+    selectors: {
+      include: [
+        'main',
+        'article',
+        '.content',
+        '[role="main"]',
+        '.prose',
+        '.blog-post',
+        '.blog-content',
+        'section',
+        'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+        'header'
+      ],
+      exclude: [
+        'pre',
+        'code',
+        'script',
+        'style',
+        '.no-superscript',
+        '[data-no-superscript]'
+      ]
+    },
+    performance: {
+      debounce: 100,
+      batchSize: 50,
+      delay: 500 // Delay to avoid hydration issues
+    }
+  }
+
+  // Regex patterns for matching
+  const patterns: PatternSet = {
+    trademark: /™|\(TM\)|(?<!\w)TM(?!\w)/g,
+    registered: /®|\(R\)(?!\))/g,
+    copyright: /©|\(C\)(?!\))/g,
+    ordinals: /\b(\d+)(st|nd|rd|th)\b/g,
+    chemicals: /([A-Z][a-z]?)(\d+)/g, // Matches H2, SO4, Ca3, etc. without word boundary requirement
+    mathSuper: /\^(\d+|\{[^}]+\})/g,
+    mathSub: /_(\d+|\{[^}]+\})/g
+  }
+
+  // Combined pattern for efficiency
+  const combinedPattern = new RegExp(
+    [
+      patterns.trademark.source,
+      patterns.registered.source,
+      patterns.copyright.source,
+      config.symbols.ordinals ? patterns.ordinals.source : null,
+      patterns.chemicals.source,
+      patterns.mathSuper.source,
+      patterns.mathSub.source
+    ].filter(Boolean).join('|'),
+    'g'
+  )
+
+  /**
+   * Process a text node and replace patterns with appropriate HTML elements
+   */
+  const processTextNode = (textNode: Text): boolean => {
+    const text = textNode.textContent || ''
+
+    // Quick check if processing is needed
+    if (!combinedPattern.test(text)) return false
+
+    // Reset regex state
+    combinedPattern.lastIndex = 0
+
+    // Build parts array
+    const parts: TextPart[] = []
+    let lastIndex = 0
+    let match: RegExpExecArray | null
+
+    while ((match = combinedPattern.exec(text)) !== null) {
+      // Add text before match
+      if (match.index > lastIndex) {
+        parts.push({
+          type: 'text',
+          content: text.substring(lastIndex, match.index)
+        })
+      }
+
+      // Process the matched text
+      const matched = match[0]
+      let processedContent = matched
+      let scriptType: 'text' | 'super' | 'sub' = 'super'
+      let skipFinalPush = false
+
+      // Determine match type and handle accordingly
+      if (/^(™|\(TM\)|TM)$/.test(matched)) {
+        // Trademark
+        processedContent = '™'
+        scriptType = 'super'
+      } else if (/^(®|\(R\))$/.test(matched)) {
+        // Registered
+        processedContent = '®'
+        scriptType = 'super'
+      } else if (/^(©|\(C\))$/.test(matched)) {
+        // Copyright - NOT superscripted
+        processedContent = '©'
+        scriptType = 'text'
+      } else if (/^\d+(st|nd|rd|th)$/.test(matched)) {
+        // Ordinals (1st, 2nd, etc.)
+        const ordinalMatch = matched.match(/^(\d+)(st|nd|rd|th)$/)
+        if (ordinalMatch) {
+          parts.push({
+            type: 'text',
+            content: ordinalMatch[1]
+          })
+          parts.push({
+            type: 'super',
+            content: ordinalMatch[2]
+          })
+          skipFinalPush = true
+        }
+      } else if (/^[A-Z][a-z]?\d+$/.test(matched)) {
+        // Chemical formulas (H2, O4, Ca3, etc.)
+        const chemMatch = matched.match(/^([A-Z][a-z]?)(\d+)$/)
+        if (chemMatch) {
+          parts.push({
+            type: 'text',
+            content: chemMatch[1]
+          })
+          parts.push({
+            type: 'sub',
+            content: chemMatch[2]
+          })
+          skipFinalPush = true
+        }
+      } else if (matched.startsWith('^')) {
+        // Math superscript
+        processedContent = matched.substring(1).replace(/[{}]/g, '')
+        scriptType = 'super'
+      } else if (matched.startsWith('_')) {
+        // Math subscript
+        processedContent = matched.substring(1).replace(/[{}]/g, '')
+        scriptType = 'sub'
+      }
+
+      // Add processed part if not already handled
+      if (!skipFinalPush) {
+        parts.push({
+          type: scriptType,
+          content: processedContent
+        })
+      }
+
+      lastIndex = match.index + matched.length
+    }
+
+    // Add remaining text
+    if (lastIndex < text.length) {
+      parts.push({
+        type: 'text',
+        content: text.substring(lastIndex)
+      })
+    }
+
+    // Only modify DOM if we found something to process
+    if (parts.some(p => p.type === 'super' || p.type === 'sub')) {
+      const fragment = document.createDocumentFragment()
+
+      parts.forEach((part) => {
+        if (part.type === 'super') {
+          const sup = document.createElement('sup')
+          sup.textContent = part.content
+          sup.className = 'auto-super'
+          sup.setAttribute('aria-label', `superscript ${part.content}`)
+          fragment.appendChild(sup)
+        } else if (part.type === 'sub') {
+          const sub = document.createElement('sub')
+          sub.textContent = part.content
+          sub.className = 'auto-sub'
+          sub.setAttribute('aria-label', `subscript ${part.content}`)
+          fragment.appendChild(sub)
+        } else {
+          fragment.appendChild(document.createTextNode(part.content))
+        }
+      })
+
+      textNode.parentNode?.replaceChild(fragment, textNode)
+      return true
+    }
+
+    return false
+  }
+
+  /**
+   * Process an HTML element and its text node children
+   */
+  const processElement = (element: Element): void => {
+    // Skip if excluded
+    if (config.selectors.exclude.some((selector) => {
+      try {
+        return element.matches(selector)
+      } catch {
+        return false
+      }
+    })) {
+      return
+    }
+
+    // Skip if already processed
+    if ((element as HTMLElement).dataset?.superscriptProcessed === 'true') return
+
+    // Check for user overrides
+    if ((element as HTMLElement).dataset?.noSuperscript !== undefined) return
+
+    // Use TreeWalker for efficient traversal
+    const walker = document.createTreeWalker(
+      element,
+      NodeFilter.SHOW_TEXT,
+      {
+        acceptNode: (node: Node): number => {
+          const parent = node.parentElement
+
+          // Skip if parent is excluded
+          if (parent) {
+            const tagName = parent.tagName
+            if (tagName === 'SUP'
+              || tagName === 'SUB'
+              || tagName === 'SCRIPT'
+              || tagName === 'STYLE'
+              || tagName === 'CODE'
+              || tagName === 'PRE') {
+              return NodeFilter.FILTER_REJECT
+            }
+
+            // Check for no-superscript data attribute
+            if (parent.dataset?.noSuperscript !== undefined) {
+              return NodeFilter.FILTER_REJECT
+            }
+          }
+
+          // Check if contains any patterns
+          const textContent = node.textContent || ''
+          // Reset lastIndex before testing to avoid regex state issues
+          combinedPattern.lastIndex = 0
+          const hasMatch = combinedPattern.test(textContent)
+          combinedPattern.lastIndex = 0 // Reset again for later use
+          return hasMatch
+            ? NodeFilter.FILTER_ACCEPT
+            : NodeFilter.FILTER_REJECT
+        }
+      }
+    )
+
+    const nodesToProcess: Text[] = []
+    let node = walker.nextNode()
+    while (node) {
+      nodesToProcess.push(node as Text)
+      node = walker.nextNode()
+    }
+
+    // Process in batches for performance
+    const batchSize = config.performance.batchSize
+    for (let i = 0; i < nodesToProcess.length; i += batchSize) {
+      const batch = nodesToProcess.slice(i, i + batchSize)
+      batch.forEach(processTextNode)
+    }
+
+    // Mark as processed
+    if (element instanceof HTMLElement) {
+      element.dataset.superscriptProcessed = 'true'
+    }
+  }
+
+  /**
+   * Process all content areas on the page
+   */
+  const processContent = (): void => {
+    if (!document.body) return
+
+    // Build selector string
+    const includeSelectors = config.selectors.include.join(', ')
+    const elements = document.querySelectorAll(includeSelectors)
+
+    elements.forEach(processElement)
+  }
+
+  // Debounced version for performance
+  let debounceTimer: ReturnType<typeof setTimeout> | undefined
+  const debouncedProcess = (): void => {
+    if (debounceTimer) clearTimeout(debounceTimer)
+    debounceTimer = setTimeout(processContent, config.performance.debounce)
+  }
+
+  // Set up MutationObserver for dynamic content
+  const observer = new MutationObserver((mutations: MutationRecord[]) => {
+    const hasNewContent = mutations.some(mutation =>
+      mutation.type === 'childList' && mutation.addedNodes.length > 0
+    )
+
+    if (hasNewContent) {
+      debouncedProcess()
+    }
+  })
+
+  // Initialize
+  nuxtApp.hook('app:mounted', () => {
+    // Wait longer to ensure hydration is complete
+    setTimeout(() => {
+      processContent()
+
+      // Only start observing after initial processing
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true
+      })
+    }, config.performance.delay)
+  })
+
+  // Process on page changes
+  nuxtApp.hook('page:finish', () => {
+    setTimeout(processContent, config.performance.delay / 2)
+  })
+
+  // Cleanup
+  nuxtApp.hook('app:unmounted', () => {
+    observer.disconnect()
+    if (debounceTimer) clearTimeout(debounceTimer)
+  })
+
+  // Provide utility functions for programmatic use
+  nuxtApp.provide('superscript', {
+    process: processContent,
+    processElement,
+    config
+  })
+})

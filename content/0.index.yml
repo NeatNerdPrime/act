@@ -1,9 +1,9 @@
-title: MITRE Adaptive Capabilities Testing (ACT)^TM^
+title: MITRE Adaptive Capabilities Testing (ACT)™
 
 description: A comprehensive, flexible, repeatable, and measurable security and risk assessment framework that enables risk-based decision-making.
 seo:
-  title: MITRE ACT^TM^ - Adaptive Capabilities Testing
-  description: MITRE Adaptive Capabilities Testing (ACT)^TM^ framework provides a risk-driven approach to security assessment and authorization.
+  title: MITRE ACT™ - Adaptive Capabilities Testing
+  description: MITRE Adaptive Capabilities Testing (ACT)™ framework provides a risk-driven approach to security assessment and authorization.
 navigation: false
 hero:
   links:
@@ -38,7 +38,7 @@ sections:
         description: Considers all available risk information sources, not just control compliance status.
         icon: i-heroicons-document-chart-bar
   - title: Systematic Three-Phase Approach
-    description: MITRE ACT implements a structured methodology that ensures comprehensive security assessment and meaningful results.
+    description: MITRE ACT™ implements a structured methodology that ensures comprehensive security assessment and meaningful results.
     orientation: horizontal
     reverse: true
     image:
@@ -55,19 +55,19 @@ sections:
         description: Document findings, develop actionable recommendations, and present results.
         icon: i-heroicons-document-text
     links:
-      - label: Learn More About MITRE ACT
+      - label: Learn More About MITRE ACT™
         to: /docs
         color: neutral
         variant: subtle
         trailingIcon: i-heroicons-arrow-right
-      - label: Contact ACT Team
+      - label: Contact ACT™ Team
         to: mailto:act@mitre.org
         icon: i-heroicons-envelope
         color: neutral
         variant: subtle
 features:
-  title: Benefits of MITRE ACT
-  description: ACT provides organizations with a more effective approach to security assessment that drives better decision-making and resource allocation.
+  title: Benefits of MITRE ACT™
+  description: ACT™ provides organizations with a more effective approach to security assessment that drives better decision-making and resource allocation.
   items:
     - title: Enhanced Risk Visibility
       description: Provides leadership with a clearer picture of real security risks to mission and business.
@@ -93,36 +93,36 @@ features:
 # To use, remove the '#' characters and adjust content appropriately
 #
 # testimonials:
-#   headline: Applications of ACT
+#   headline: Applications of ACT™
 #   title: Real-World Implementation
-#   description: ACT has been successfully implemented across various organizations and contexts.
+#   description: ACT™ has been successfully implemented across various organizations and contexts.
 #   items:
-#     - quote: The ACT framework allowed our organization to shift from a compliance-focused approach to a risk-driven security program that better aligns with our business objectives.
+#     - quote: The ACT™ framework allowed our organization to shift from a compliance-focused approach to a risk-driven security program that better aligns with our business objectives.
 #       user:
 #         name: Security Leader
 #         description: Federal Government Agency
 #         avatar:
 #           src: /images/act-handbook/mitre-logo.png
-#     - quote: By adopting the ACT methodology, we were able to prioritize security investments based on actual risk reduction potential rather than just meeting compliance requirements.
+#     - quote: By adopting the ACT™ methodology, we were able to prioritize security investments based on actual risk reduction potential rather than just meeting compliance requirements.
 #       user:
 #         name: CISO
 #         description: Critical Infrastructure Organization
 #         avatar:
 #           src: /images/act-handbook/mitre-logo.png
-#     - quote: ACT provided a structured approach that helped us integrate findings from various security assessments into a unified risk picture for executive decision-making.
+#     - quote: ACT™ provided a structured approach that helped us integrate findings from various security assessments into a unified risk picture for executive decision-making.
 #       user:
 #         name: Program Manager
 #         description: Defense Contractor
 #         avatar:
 #           src: /images/act-handbook/mitre-logo.png
 cta:
-  title: Start your MITRE ACT journey today
-  description: Learn about the ACT framework and access resources to implement risk-driven security assessment in your organization.
+  title: Start your MITRE ACT™ journey today
+  description: Learn about the ACT™ framework and access resources to implement risk-driven security assessment in your organization.
   links:
     - label: Get Started
       to: '/docs'
       icon: i-heroicons-book-open
-    - label: Contact the MITRE ACT Team
+    - label: Contact the MITRE ACT™ Team
       to: 'mailto:act@mitre.org'
       variant: subtle
       icon: i-heroicons-envelope
