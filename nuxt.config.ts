@@ -23,7 +23,7 @@ export default defineNuxtConfig({
   content: {
     build: {
       markdown: {
-        remarkPlugins: ["remark-supersub"]
+        remarkPlugins: ['remark-supersub']
       }
     },
     preview: {
