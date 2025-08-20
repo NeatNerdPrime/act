@@ -1,4 +1,5 @@
 import { defineCollection, z } from '@nuxt/content'
+import { defineContentConfig } from '@nuxt/content'
 
 const variantEnum = z.enum(['solid', 'outline', 'subtle', 'soft', 'ghost', 'link'])
 const colorEnum = z.enum(['primary', 'secondary', 'neutral', 'error', 'warning', 'success', 'info'])
