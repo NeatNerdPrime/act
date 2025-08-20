@@ -1,17 +1,9 @@
-import { defineCollection, z, defineContentConfig } from '@nuxt/content'
+import { defineCollection, z } from '@nuxt/content'
 
 const variantEnum = z.enum(['solid', 'outline', 'subtle', 'soft', 'ghost', 'link'])
 const colorEnum = z.enum(['primary', 'secondary', 'neutral', 'error', 'warning', 'success', 'info'])
 const sizeEnum = z.enum(['xs', 'sm', 'md', 'lg', 'xl'])
 const orientationEnum = z.enum(['vertical', 'horizontal'])
-
-export default defineContentConfig({
-  markdown: {
-    remarkPlugins: [
-      'remark-supersub'
-    ]
-  }
-})
 
 const createBaseSchema = () => z.object({
   title: z.string().nonempty(),

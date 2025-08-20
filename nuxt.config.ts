@@ -21,6 +21,11 @@ export default defineNuxtConfig({
 
   // Nuxt Studio integration
   content: {
+    build: {
+      markdown: {
+        remarkPlugins: ["remark-supersub"]
+      }
+    },
     preview: {
       api: 'https://api.nuxt.studio'
     }
