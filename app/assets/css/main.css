@@ -214,7 +214,3 @@
 .dark {
   --ui-bg: var(--ui-color-neutral-950);
 }
-
-.prose sup {
-  @apply align-super text-xs;
-}
