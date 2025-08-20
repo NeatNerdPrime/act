@@ -23,6 +23,10 @@ export default defineNuxtConfig({
   content: {
     preview: {
       api: 'https://api.nuxt.studio'
+    },
+    documentDriven: true,
+    markdown: {
+      sanitize: false // Allow inline HTML
     }
   },
 

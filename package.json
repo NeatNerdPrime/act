@@ -44,6 +44,7 @@
     "nuxt": "^3.17.4",
     "nuxt-github-pages": "^1.0.0",
     "nuxt-og-image": "^5.1.4",
+    "remark-supersub": "^1.0.0",
     "zod": "^3.25.36"
   },
   "devDependencies": {
