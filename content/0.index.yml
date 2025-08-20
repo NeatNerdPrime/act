@@ -21,7 +21,7 @@ hero:
     #   target: _blank
 sections:
   - title: Risk-Based Decision Making
-    description: MITRE ACT^TM^ revolutionizes security assessment by focusing on risk at the capability level rather than compliance with technical requirements.
+    description: MITRE ACT™ revolutionizes security assessment by focusing on risk at the capability level rather than compliance with technical requirements.
     id: advantages
     orientation: horizontal
     image:
