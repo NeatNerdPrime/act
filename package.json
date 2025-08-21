@@ -2,6 +2,12 @@
   "name": "nuxt-ui-pro-template-saas",
   "private": true,
   "type": "module",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "simple-git-hooks",
+      "@tailwindcss/oxide"
+    ]
+  },
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
