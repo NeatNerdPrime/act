@@ -2,8 +2,8 @@
 # Increases memory allocation to prevent JavaScript heap out of memory errors
 
 [build]
-  command = "pnpm run generate"
-  publish = ".output/public"
+  command = "pnpm run generate && mv .output/public dist"
+  publish = "dist"
   environment = { NODE_OPTIONS = "--max-old-space-size=8192" }
 
 [build.processing]
