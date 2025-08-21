@@ -68,7 +68,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     performance: {
       debounce: 100,
       batchSize: 50,
-      delay: 500 // Delay to avoid hydration issues
+      delay: 1500 // Increased delay to ensure hydration completes
     }
   }
 
@@ -78,7 +78,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     registered: /®|\(R\)(?!\))/g,
     copyright: /©|\(C\)(?!\))/g,
     ordinals: /\b(\d+)(st|nd|rd|th)\b/g,
-    chemicals: /([A-Z][a-z]?)(\d+)/g, // Matches H2, SO4, Ca3, etc. without word boundary requirement
+    chemicals: /([A-Z][a-z]?)(\d+)|\)(\d+)/g, // Matches H2, SO4, Ca3, and also )3, )2 for formulas with parentheses
     mathSuper: /\^(\d+|\{[^}]+\})/g,
     mathSub: /_(\d+|\{[^}]+\})/g
   }
@@ -145,7 +145,7 @@ export default defineNuxtPlugin((nuxtApp) => {
       } else if (/^\d+(st|nd|rd|th)$/.test(matched)) {
         // Ordinals (1st, 2nd, etc.)
         const ordinalMatch = matched.match(/^(\d+)(st|nd|rd|th)$/)
-        if (ordinalMatch) {
+        if (ordinalMatch && ordinalMatch[1] && ordinalMatch[2]) {
           parts.push({
             type: 'text',
             content: ordinalMatch[1]
@@ -156,19 +156,36 @@ export default defineNuxtPlugin((nuxtApp) => {
           })
           skipFinalPush = true
         }
-      } else if (/^[A-Z][a-z]?\d+$/.test(matched)) {
-        // Chemical formulas (H2, O4, Ca3, etc.)
-        const chemMatch = matched.match(/^([A-Z][a-z]?)(\d+)$/)
-        if (chemMatch) {
-          parts.push({
-            type: 'text',
-            content: chemMatch[1]
-          })
-          parts.push({
-            type: 'sub',
-            content: chemMatch[2]
-          })
-          skipFinalPush = true
+      } else if (/^[A-Z][a-z]?\d+$/.test(matched) || /^\)\d+$/.test(matched)) {
+        // Chemical formulas (H2, O4, Ca3, etc.) or parentheses with numbers )3, )2
+        if (matched.startsWith(')')) {
+          // Handle )3, )2 pattern for formulas with parentheses
+          const parenMatch = matched.match(/^\)(\d+)$/)
+          if (parenMatch && parenMatch[1]) {
+            parts.push({
+              type: 'text',
+              content: ')'
+            })
+            parts.push({
+              type: 'sub',
+              content: parenMatch[1]
+            })
+            skipFinalPush = true
+          }
+        } else {
+          // Handle regular element-number pattern
+          const chemMatch = matched.match(/^([A-Z][a-z]?)(\d+)$/)
+          if (chemMatch && chemMatch[1] && chemMatch[2]) {
+            parts.push({
+              type: 'text',
+              content: chemMatch[1]
+            })
+            parts.push({
+              type: 'sub',
+              content: chemMatch[2]
+            })
+            skipFinalPush = true
+          }
         }
       } else if (matched.startsWith('^')) {
         // Math superscript
@@ -341,8 +358,8 @@ export default defineNuxtPlugin((nuxtApp) => {
 
   // Initialize
   nuxtApp.hook('app:mounted', () => {
-    // Wait longer to ensure hydration is complete
-    setTimeout(() => {
+    // Use requestIdleCallback for better timing if available
+    const startProcessing = () => {
       processContent()
 
       // Only start observing after initial processing
@@ -350,19 +367,45 @@ export default defineNuxtPlugin((nuxtApp) => {
         childList: true,
         subtree: true
       })
-    }, config.performance.delay)
+    }
+
+    // Wait for browser to be idle after hydration
+    if ('requestIdleCallback' in window) {
+      window.requestIdleCallback(() => {
+        setTimeout(startProcessing, 100) // Small additional delay
+      }, { timeout: config.performance.delay })
+    } else {
+      // Fallback to setTimeout
+      setTimeout(startProcessing, config.performance.delay)
+    }
   })
 
-  // Process on page changes
+  // Process on page changes - use multiple hooks to catch navigation
   nuxtApp.hook('page:finish', () => {
-    setTimeout(processContent, config.performance.delay / 2)
+    // Reset all processing flags when navigating
+    document.querySelectorAll('[data-superscript-processed]').forEach((el) => {
+      if (el instanceof HTMLElement) {
+        delete el.dataset.superscriptProcessed
+      }
+    })
+    setTimeout(processContent, 100)
   })
 
-  // Cleanup
-  nuxtApp.hook('app:unmounted', () => {
-    observer.disconnect()
-    if (debounceTimer) clearTimeout(debounceTimer)
-  })
+  // Also hook into route changes as backup
+  if (nuxtApp.$router && typeof nuxtApp.$router === 'object' && nuxtApp.$router !== null && 'afterEach' in nuxtApp.$router) {
+    const router = nuxtApp.$router as { afterEach: (callback: () => void) => void }
+    router.afterEach(() => {
+      setTimeout(processContent, 150)
+    })
+  }
+
+  // Cleanup on page unload
+  if (typeof window !== 'undefined') {
+    window.addEventListener('beforeunload', () => {
+      observer.disconnect()
+      if (debounceTimer) clearTimeout(debounceTimer)
+    })
+  }
 
   // Provide utility functions for programmatic use
   nuxtApp.provide('superscript', {

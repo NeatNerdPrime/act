@@ -7,29 +7,29 @@ sup.auto-super,
   /* Spacing for better readability */
   margin-left: 0.05em;   /* Small space before */
   margin-right: 0.1em;   /* Slightly more space after */
-
+  
   /* Core superscript styling */
   font-size: 0.75em;
   line-height: 0;
   vertical-align: super;  /* Use browser's native superscript positioning - adapts to font metrics */
-
+  
   /* Visual refinement */
   font-weight: inherit;
   letter-spacing: 0.025em;
 }
 
-/* Auto-generated subscript elements */
+/* Auto-generated subscript elements */  
 sub.auto-sub,
 .text-sub {
   /* Spacing for better readability */
   margin-left: 0.05em;   /* Small space before */
   margin-right: 0.1em;   /* Slightly more space after */
-
+  
   /* Core subscript styling */
   font-size: 0.75em;
   line-height: 0;
   vertical-align: sub;    /* Use browser's native subscript positioning */
-
+  
   /* Visual refinement */
   font-weight: inherit;
   letter-spacing: 0.025em;
