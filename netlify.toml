@@ -2,9 +2,17 @@
 # Increases memory allocation to prevent JavaScript heap out of memory errors
 
 [build]
-  command = "rm -rf node_modules .nuxt .output && pnpm install --force && pnpm run generate && mv .output/public dist"
-  publish = "dist"
+  command = "pnpm run generate"
+  publish = ".output/public"
   environment = { NODE_OPTIONS = "--max-old-space-size=8192" }
+
+[build.processing]
+  # Disable Netlify's post-processing to avoid conflicts with our structure
+  skip_processing = true
+
+[build.processing.html]
+  # Disable Pretty URLs since we handle it ourselves
+  pretty_urls = false
 
 # Note: Trailing slash handling is now done by generating directory structure
 # with index.html files, which works on both GitHub Pages and Netlify
