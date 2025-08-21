@@ -26,3 +26,5 @@ temp/
 
 # Local modules
 nuxt-github-pages/
+# Local Netlify folder
+.netlify

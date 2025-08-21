@@ -1,6 +1,4 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import * as remarkSupersub from 'remark-supersub'
-
 export default defineNuxtConfig({
   modules: [
     '@nuxt/eslint',
@@ -23,13 +21,6 @@ export default defineNuxtConfig({
 
   // Nuxt Studio integration
   content: {
-    build: {
-      markdown: {
-        remarkPlugins: {
-          supersub: remarkSupersub
-        }
-      }
-    },
     preview: {
       api: 'https://api.nuxt.studio'
     }
