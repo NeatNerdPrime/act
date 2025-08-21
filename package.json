@@ -3,11 +3,15 @@
   "private": true,
   "type": "module",
   "pnpm": {
-    "onlyBuiltDependencies": [
-      "simple-git-hooks",
-      "@tailwindcss/oxide"
-    ]
+    "allowedDeprecatedVersions": {
+      "*": "*"
+    },
+    "onlyBuiltDependenciesFile": false
   },
+  "trustedDependencies": [
+    "simple-git-hooks",
+    "@tailwindcss/oxide"
+  ],
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
