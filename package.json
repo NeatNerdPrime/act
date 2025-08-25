@@ -52,6 +52,7 @@
     "@iconify-json/vscode-icons": "^1.2.22",
     "@nuxt/eslint": "^1.4.1",
     "eslint": "^9.28.0",
+    "jsdom": "^26.1.0",
     "lint-staged": "^16.1.0",
     "prettier": "^3.5.3",
     "sharp": "^0.34.2",
