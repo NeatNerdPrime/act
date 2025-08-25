@@ -10,7 +10,8 @@ export default defineNuxtConfig({
     'nuxt-og-image',
     '@nuxt/fonts',
     '@nuxt/icon',
-    'nuxt-github-pages'
+    'nuxt-github-pages',
+    '@mitre/nuxt-smartscript'
   ],
 
   devtools: {
@@ -115,5 +116,12 @@ export default defineNuxtConfig({
     quality: 80,
     cacheDir: '.nuxt/image-cache'
     */
+  },
+
+  smartscript: {
+    cssVariables: {
+      'tm-top': '-0.65em', // Properly raised for ACT branding
+      'sup-font-size': '0.65em' // Smaller size for better appearance
+    }
   }
 })

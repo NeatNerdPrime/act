@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { onMounted } from 'vue'
+
 definePageMeta({
   layout: 'landing'
 })
@@ -9,6 +11,18 @@ useSeoMeta({
   ogTitle: 'MITRE ACT™ - Coming Soon',
   description: 'MITRE ACT™ (Adaptive Capabilities Testing) website is coming soon.',
   ogDescription: 'MITRE ACT™ (Adaptive Capabilities Testing) website is coming soon.'
+})
+
+// Use the smartscript composable to process the page
+const { $smartscript } = useNuxtApp()
+
+onMounted(() => {
+  // Process the content after mount
+  if ($smartscript && $smartscript.process) {
+    setTimeout(() => {
+      $smartscript.process()
+    }, 100)
+  }
 })
 </script>
 
@@ -31,7 +45,23 @@ useSeoMeta({
 
     <!-- Description with smaller mobile text - using theme colors -->
     <p class="text-xs sm:text-sm md:text-base lg:text-xl text-(--ui-text-muted) max-w-2xl mx-auto leading-relaxed px-2 sm:px-0">
-      MITRE Adaptive Capabilities Testing (ACT) site coming soon.
+      MITRE ACT™ (Adaptive Capabilities Testing) site coming soon.
     </p>
   </div>
 </template>
+
+<style scoped>
+/* Temporary fix for trademark positioning until module is updated */
+h1 {
+  position: relative;
+}
+
+h1::after {
+  content: '';
+}
+
+/* Target the TM symbol and make it superscript */
+:deep(h1) {
+  font-size: inherit;
+}
+</style>
