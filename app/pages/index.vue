@@ -7,10 +7,10 @@ definePageMeta({
 
 useSeoMeta({
   titleTemplate: '',
-  title: 'MITRE ACT™ - Coming Soon',
-  ogTitle: 'MITRE ACT™ - Coming Soon',
-  description: 'MITRE ACT™ (Adaptive Capabilities Testing) website is coming soon.',
-  ogDescription: 'MITRE ACT™ (Adaptive Capabilities Testing) website is coming soon.'
+  title: 'MITRE ACT (TM) - Coming Soon',
+  ogTitle: 'MITRE ACT (TM) - Coming Soon',
+  description: 'MITRE ACT (TM) (Adaptive Capabilities Testing) website is coming soon.',
+  ogDescription: 'MITRE ACT (TM) (Adaptive Capabilities Testing) website is coming soon.'
 })
 
 // Use the smartscript composable to process the page
@@ -34,18 +34,18 @@ onMounted(() => {
     <!-- ACT Logo - Reduced mobile sizes -->
     <NuxtImg
       src="/images/logos/mitre-act-arrow-logo.svg"
-      alt="MITRE ACT™ Logo"
+      alt="MITRE ACT (TM) Logo"
       class="h-20 sm:h-28 md:h-36 lg:h-48 mx-auto mb-3 sm:mb-5"
     />
 
     <!-- Title with smaller mobile sizes - using theme colors -->
     <h1 class="text-xl sm:text-2xl md:text-3xl lg:text-5xl font-bold mb-2 sm:mb-3 text-(--ui-text)">
-      MITRE ACT™
+      MITRE (R) ACT (TM)
     </h1>
 
     <!-- Description with smaller mobile text - using theme colors -->
     <p class="text-xs sm:text-sm md:text-base lg:text-xl text-(--ui-text-muted) max-w-2xl mx-auto leading-relaxed px-2 sm:px-0">
-      MITRE ACT™ (Adaptive Capabilities Testing) site coming soon.
+      MITRE (R) ACT (TM) (Adaptive Capabilities Testing) site coming soon.
     </p>
   </div>
 </template>

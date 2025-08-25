@@ -14,7 +14,7 @@ const showCookiePreferences = () => {
       <div class="space-y-4">
         <p class="text-center text-(--ui-text-muted) text-sm">
           Copyright © 1997-2025, The MITRE Corporation. All rights reserved. <br>
-          ACT and MITRE ACT are trademarks of The MITRE Corporation.
+          MITRE (R) is a registered trademark and ACT (TM) and MITRE (R) ACT (TM) are trademarks of The MITRE Corporation.
         </p>
         <div class="flex items-center justify-center gap-4 text-sm">
           <ULink
