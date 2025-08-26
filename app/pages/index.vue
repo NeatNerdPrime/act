@@ -7,10 +7,10 @@ definePageMeta({
 
 useSeoMeta({
   titleTemplate: '',
-  title: 'MITRE® ACT™ - Coming Soon',
-  ogTitle: 'MITRE® ACT™ - Coming Soon',
-  description: 'MITRE® ACT™ (Adaptive Capabilities Testing) website is coming soon.',
-  ogDescription: 'MITRE® ACT™ (Adaptive Capabilities Testing) website is coming soon.'
+  title: 'MITRE ACT™ - Coming Soon',
+  ogTitle: 'MITRE ACT™ - Coming Soon',
+  description: 'MITRE ACT™ (Adaptive Capabilities Testing) website is coming soon.',
+  ogDescription: 'MITRE ACT™ (Adaptive Capabilities Testing) website is coming soon.'
 })
 
 // Use the smartscript composable to process the page
@@ -40,12 +40,12 @@ onMounted(() => {
 
     <!-- Title with smaller mobile sizes - using theme colors -->
     <h1 class="text-xl sm:text-2xl md:text-3xl lg:text-5xl font-bold mb-2 sm:mb-3 text-(--ui-text)">
-      MITRE(R) ACT(TM)
+      MITRE ACT(TM)
     </h1>
 
     <!-- Description with smaller mobile text - using theme colors -->
     <p class="text-xs sm:text-sm md:text-base lg:text-xl text-(--ui-text-muted) max-w-2xl mx-auto leading-relaxed px-2 sm:px-0">
-      MITRE(R) ACT(TM) (Adaptive Capabilities Testing) site coming soon.
+      MITRE ACT(TM) (Adaptive Capabilities Testing) site coming soon.
     </p>
   </div>
 </template>
