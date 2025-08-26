@@ -3,10 +3,14 @@
   "private": true,
   "type": "module",
   "pnpm": {
-    "allowedDeprecatedVersions": {
-      "*": "*"
-    },
-    "onlyBuiltDependenciesFile": false
+    "onlyBuiltDependencies": [
+      "@parcel/watcher",
+      "better-sqlite3",
+      "esbuild",
+      "sharp",
+      "unrs-resolver",
+      "vue-demi"
+    ]
   },
   "trustedDependencies": [
     "simple-git-hooks",
@@ -42,6 +46,7 @@
   "dependencies": {
     "@iconify-json/lucide": "^1.2.45",
     "@iconify-json/simple-icons": "^1.2.36",
+    "@mitre/nuxt-smartscript": "^0.4.1",
     "@nuxt/content": "https://pkg.pr.new/@nuxt/content@bf24dfe",
     "@nuxt/fonts": "^0.11.4",
     "@nuxt/icon": "^1.13.0",
@@ -71,16 +76,6 @@
   "resolutions": {
     "unimport": "4.1.1",
     "vue-tsc": "2.2.10"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "@parcel/watcher",
-      "better-sqlite3",
-      "esbuild",
-      "sharp",
-      "unrs-resolver",
-      "vue-demi"
-    ]
   },
   "packageManager": "pnpm@10.7.0"
 }
