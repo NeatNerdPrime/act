@@ -29,7 +29,7 @@ useSeoMeta({
 
       <div class="flex items-center justify-center my-6">
         <NuxtImg
-          src="/images/logos/mitre-act-arrow-logo.svg"
+          src="/images/heroes/risk-based-decision-making.svg"
           alt="MITRE ACT Logo"
           class="h-48"
         />
