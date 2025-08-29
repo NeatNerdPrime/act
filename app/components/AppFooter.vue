@@ -52,8 +52,8 @@ const columns = [{
 {
   label: 'Legal',
   children: [{
-    label: 'Terms of Use  License',
-    to: '/docs/terms-of-use',
+    label: 'Terms of Use and License',
+    to: '/docs/terms-of-use'
   }
   ]
 }]
