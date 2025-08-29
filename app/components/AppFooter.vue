@@ -22,10 +22,6 @@ const columns = [{
   label: 'Resources',
   children: [
     {
-      label: 'Docs',
-      to: '/docs'
-    },
-    {
       label: 'Artifacts',
       to: '/docs/artifacts'
     },
@@ -50,6 +46,14 @@ const columns = [{
     label: 'Manage Cookies',
     to: 'javascript:void(0)',
     onClick: showCookiePreferences
+  }
+  ]
+}
+{
+  label: 'Legal',
+  children: [{
+    label: 'Terms of Use  License',
+    to: '/docs/terms-of-use',
   }
   ]
 }]
@@ -84,7 +88,7 @@ const columns = [{
     <template #default>
       <p class="text-center text-(--ui-text-muted) text-sm">
         Copyright © 1997-2025, The MITRE Corporation. All rights reserved. <br>
-        ACT and MITRE ACT are trademarks of The MITRE Corporation. Material on this site may be copied and distributed with permission only.
+        MITRE ACT, ACT, and the MITRE ACT logo are trademarks of The MITRE Corporation. Material on this site may be copied and distributed with permission only.
       </p>
     </template>
 
