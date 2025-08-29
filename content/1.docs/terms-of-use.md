@@ -1,4 +1,4 @@
-# TERMS OF USE
+# Terms of Use
  
 # LICENSE
 The MITRE Corporation (MITRE) hereby grants you a non-exclusive, royalty-free license to use, copy, and create derivative works of MITRE ACT™ for internal business purposes or commercial use. Any copy you make for such purposes is authorized provided that you:
