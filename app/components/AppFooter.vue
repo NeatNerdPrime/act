@@ -48,7 +48,7 @@ const columns = [{
     onClick: showCookiePreferences
   }
   ]
-}
+},
 {
   label: 'Legal',
   children: [{
