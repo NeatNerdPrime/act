@@ -125,7 +125,7 @@ cta:
   title: Start your ACT journey today
   description: Discover how MITRE ACT™ helps you move beyond compliance and protect what matters most.
   links:
-     - label: Learn More about ACT
+    - label: Learn More about ACT
       icon: i-heroicons-rocket-launch
       size: xl
       trailing: true
@@ -134,7 +134,7 @@ cta:
       icon: i-heroicons-book-open
       size: xl
       trailing: true
-      to: '/docs/teamplates'
+      to: '/docs/templates'
     # - label: View on GitHub
     #   icon: i-simple-icons-github
     #   size: xl
