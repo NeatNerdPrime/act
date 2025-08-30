@@ -29,7 +29,7 @@ sections:
     description: ACT transforms raw compliance data into mission-focused risk insights, helping leaders understand what really matters.
     orientation: horizontal
     image:
-      src: /images/heroes/mitre-act-arrow-logo.svg
+      src: /images/heroes/logos/mitre-act-arrow-logo.svg
       alt: Smarter Cybersecurity Decisions
     features:
       - name: Synthesizes All Risk Information
