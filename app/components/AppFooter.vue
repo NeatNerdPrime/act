@@ -22,8 +22,12 @@ const columns = [{
   label: 'Resources',
   children: [
     {
-      label: 'Artifacts',
-      to: '/docs/artifacts'
+      label: 'Learn More',
+      to: '/docs/getting-started'
+    },
+    {
+      label: 'Templates',
+      to: '/docs/templates'
     },
     {
       label: 'Blog',
