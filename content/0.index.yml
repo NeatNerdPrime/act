@@ -12,7 +12,7 @@ hero:
       size: xl
       trailing: true
       to: '/docs/getting-started'
-    - label: Get the Docs
+    - label: Get the Templates
       icon: i-heroicons-book-open
       size: xl
       trailing: true
@@ -130,7 +130,7 @@ cta:
       size: xl
       trailing: true
       to: '/docs/getting-started'
-    - label: Get the Docs
+    - label: Get the Templates
       icon: i-heroicons-book-open
       size: xl
       trailing: true
