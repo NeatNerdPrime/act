@@ -1,12 +1,16 @@
 title: MITRE Adaptive Capabilities Testing (ACT)™
-
-description: A comprehensive, flexible, repeatable, and measurable security and risk assessment framework that enables risk-based decision-making.
+description: Decide with Insight. ACT with Confidence.
 seo:
   title: MITRE ACT™ - Adaptive Capabilities Testing
-  description: MITRE Adaptive Capabilities Testing (ACT)™ provides a comprehensive, flexible, repeatable, and measurable risk-driven approach to cyber assessment and authorization.
+  description: MITRE ACT™ is a flexible, risk-focused assessment framework that helps organizations move beyond compliance checklists to make smarter, mission-driven cybersecurity decisions.
 navigation: false
 hero:
   links:
+    - label: Learn More about ACT
+      icon: i-heroicons-rocket-launch
+      size: xl
+      trailing: true
+      to: '/docs/getting-started'
     - label: Get the Docs
       icon: i-heroicons-book-open
       size: xl
@@ -19,74 +23,74 @@ hero:
     #   variant: subtle
     #   to: "https://github.com/mitre/act"
     #   target: _blank
+
 sections:
-  - title: Risk-Based Decision Making
-    description: MITRE ACT™ revolutionizes security assessment by focusing on risk at the capability level rather than compliance with technical requirements.
-    id: advantages
+  - title: Smarter Cybersecurity Decisions
+    description: ACT transforms raw compliance data into mission-focused risk insights, helping leaders understand what really matters.
     orientation: horizontal
     image:
       src: /images/heroes/mitre-act-arrow-logo.svg
-      alt: Risk-Based Decision Making
+      alt: Smarter Cybersecurity Decisions
     features:
+      - name: Synthesizes All Risk Information
+        description: Integrates every available Risk Information Source (RIS) for a complete risk picture.
+        icon: i-heroicons-arrows-pointing-in
+      - name: Understandable & Actionable
+        description: Adds context and clarity so findings drive informed, justified decisions.
+        icon: i-heroicons-sparkles
       - name: Risk-Driven
-        description: Focuses on identifying and analyzing risks at the capability level rather than technical compliance.
-        icon: i-heroicons-chart-bar
+        description: Focuses on risk to capabilities and mission, not just checklist closure.
+        icon: i-heroicons-scale
       - name: Capability-Oriented
-        description: Emphasizes system capabilities and objectives rather than specific implementation requirements.
-        icon: i-heroicons-cube
-      - name: Comprehensive Analysis
-        description: Considers all available risk information sources, not just control compliance status.
-        icon: i-heroicons-document-chart-bar
-  - title: Systematic Three-Phase Approach
-    description: MITRE ACT™ implements a structured methodology that ensures comprehensive security assessment and meaningful results.
+        description: Elevates analysis to the mission-objective level, beyond control counts.
+        icon: i-heroicons-flag
+
+  - title: Why ACT?
+    description: Traditional compliance assessments often waste resources without improving security. ACT helps you close the *right* gaps by aligning efforts with mission objectives.
     orientation: horizontal
     reverse: true
     image:
       src: /images/heroes/systematic-three-phase-approach.png
-      alt: Systematic Three-Phase Approach
+      alt: Why ACT?
     features:
-      - name: Planning
-        description: Establish scope, develop methodology, create test plan, and prepare the assessment team.
-        icon: i-heroicons-clipboard-document-list
-      - name: Assessment
-        description: Execute security testing and risk analysis activities according to the assessment plan.
-        icon: i-heroicons-magnifying-glass
-      - name: Reporting
-        description: Document findings, develop actionable recommendations, and present results.
-        icon: i-heroicons-document-text
+      - name: Reduce Waste
+        description: Target high-impact fixes instead of chasing every finding.
+        icon: i-heroicons-arrow-trending-up
+      - name: Empower Leaders
+        description: Deliver risk insights in plain language, not jargon.
+        icon: i-heroicons-light-bulb
+      - name: Protect the Mission
+        description: Ensure cybersecurity investments strengthen real capabilities.
+        icon: i-heroicons-shield-check
     links:
-      - label: Learn More About MITRE ACT™
-        to: /docs
+      - label: Learn More About ACT
+        to: /docs/getting-started
         color: neutral
         variant: subtle
         trailingIcon: i-heroicons-arrow-right
-      - label: Contact ACT™ Team
+      - label: Contact ACT Team
         to: mailto:act@mitre.org
         icon: i-heroicons-envelope
         color: neutral
         variant: subtle
+
 features:
   title: Benefits of MITRE ACT™
-  description: ACT™ provides organizations with a more effective approach to security assessment that drives better decision-making and resource allocation.
+  description: ACT™ makes assessments more impactful, understandable, and efficient for organizations, leaders, and security teams.
   items:
-    - title: Enhanced Risk Visibility
-      description: Provides leadership with a clearer picture of real security risks to mission and business.
+    - title: Clear Risk Visibility
+      description: Show leadership the risks that actually affect mission and business outcomes.
       icon: i-heroicons-eye
-    - title: RMF Alignment
-      description: Directly supports NIST Risk Management Framework objectives while reducing documentation burden.
-      icon: i-heroicons-check-badge
     - title: Actionable Insights
-      description: Delivers findings and recommendations that are immediately useful for decision makers.
-      icon: i-heroicons-light-bulb
-    - title: Compliance Efficacy
-      description: Evaluates how well compliance activities actually reduce risk rather than just checking boxes.
-      icon: i-heroicons-clipboard-document-check
-    - title: Resource Optimization
-      description: Helps focus security resources on the areas with highest risk reduction potential.
-      icon: i-heroicons-arrow-trending-up
-    - title: Adaptable Methodology
-      description: Flexible approach that can be tailored to diverse organizational contexts and objectives.
+      description: Deliver findings and recommendations that truly drive decisions.
+      icon: i-heroicons-check-circle
+    - title: Efficient & Scalable
+      description: Streamline assessment processes and adapt ACT to your environment.
       icon: i-heroicons-adjustments-horizontal
+    - title: Mission Impact
+      description: Align cybersecurity with what really matters—your objectives and capabilities.
+      icon: i-heroicons-flag
+
 # DEVELOPER NOTE:
 # Example testimonials section below - uncomment and modify as needed
 # When left commented out, the page template will automatically hide this section
@@ -115,13 +119,28 @@ features:
 #         description: Defense Contractor
 #         avatar:
 #           src: /images/act-handbook/mitre-logo.png
+
 cta:
-  title: Start your MITRE ACT™ journey today
-  description: Learn about the ACT™ framework and access resources to implement risk-driven security assessment in your organization.
+  title: Start your ACT journey today
+  description: Discover how MITRE ACT™ helps you move beyond compliance and protect what matters most.
   links:
-    - label: Get Started
-      to: '/docs'
+     - label: Learn More about ACT
+      icon: i-heroicons-rocket-launch
+      size: xl
+      trailing: true
+      to: '/docs/getting-started'
+    - label: Get the Docs
       icon: i-heroicons-book-open
+      size: xl
+      trailing: true
+      to: '/docs'
+    # - label: View on GitHub
+    #   icon: i-simple-icons-github
+    #   size: xl
+    #   color: neutral
+    #   variant: subtle
+    #   to: "https://github.com/mitre/act"
+    #   target: _blank
     - label: Contact the MITRE ACT™ Team
       to: 'mailto:act@mitre.org'
       variant: subtle
