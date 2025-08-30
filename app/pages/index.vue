@@ -27,13 +27,14 @@ useSeoMeta({
 
       <PromotionalVideo v-if="false" />
 
-      <div class="flex items-center justify-center my-6">
+      <!-- Nate removed this floating logo for initial deployment. -->
+      <!-- <div class="flex items-center justify-center my-6">
         <NuxtImg
           src="/images/heroes/risk-based-decision-making.svg"
           alt="MITRE ACT Logo"
           class="h-48"
         />
-      </div>
+      </div> -->
     </UPageHero>
 
     <template v-if="page.sections && page.sections.length">
