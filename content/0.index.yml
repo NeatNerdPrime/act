@@ -16,7 +16,7 @@ hero:
       icon: i-heroicons-book-open
       size: xl
       trailing: true
-      to: '/docs'
+      to: '/docs/templates'
     # - label: View on GitHub
     #   icon: i-simple-icons-github
     #   size: xl
@@ -134,7 +134,7 @@ cta:
       icon: i-heroicons-book-open
       size: xl
       trailing: true
-      to: '/docs'
+      to: '/docs/teamplates'
     # - label: View on GitHub
     #   icon: i-simple-icons-github
     #   size: xl
