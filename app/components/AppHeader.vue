@@ -11,11 +11,6 @@ const items = [{
   label: 'Blog',
   to: '/blog'
 }
-// Commented out - may use later
-// , {
-//   label: 'Pricing',
-//   to: '/pricing'
-// }
 ]
 
 // Access theme state using useState
