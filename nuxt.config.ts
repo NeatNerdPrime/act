@@ -4,14 +4,12 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@nuxt/image',
     '@nuxt/ui',
-    '@nuxt/ui-pro',
     '@nuxt/content',
     '@vueuse/nuxt',
     'nuxt-og-image',
-    '@nuxt/fonts',
-    '@nuxt/icon',
     'nuxt-github-pages',
-    '@mitre/nuxt-smartscript'
+    '@mitre/nuxt-smartscript',
+    './modules/act-design-system'
   ],
 
   devtools: {
@@ -19,6 +17,10 @@ export default defineNuxtConfig({
   },
 
   css: ['~/assets/css/main.css'],
+
+  colorMode: {
+    preference: 'dark' // Default to dark mode
+  },
 
   // Nuxt Studio integration
   content: {
@@ -110,9 +112,9 @@ export default defineNuxtConfig({
   },
   smartscript: {
     cssVariables: {
-      'tm-top': '-0.68em', // Optimized for large headers - ACT™ branding
+      'tm-top': '-0.4em', // Optimized for Nuxt 4 typography rendering
       'tm-font-size': '0.65em', // Smaller trademark symbol
-      'reg-top': '-0.68em', // Registered symbol positioning
+      'reg-top': '-0.4em', // Registered symbol positioning
       'reg-font-size': '0.65em', // Registered symbol size
       'sup-font-size': '0.75em' // Standard superscript size
     }
