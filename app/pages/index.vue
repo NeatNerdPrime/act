@@ -34,7 +34,7 @@ useSeoMeta({
           alt="MITRE ACT Logo"
           class="h-24 sm:h-32 lg:h-40"
         />
-      </div> -->
+      </div>
     </UPageHero>
 
     <template v-if="page.sections && page.sections.length">
