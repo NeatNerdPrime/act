@@ -2,17 +2,15 @@
 // const route = useRoute() // Commented out - may use later for active state
 
 const items = [{
-  label: 'Docs',
-  to: '/docs'
+  label: 'Learn More',
+  to: '/docs/getting-started'
+}, {
+  label: 'Get the Templates',
+  to: '/docs/templates'
 }, {
   label: 'Blog',
   to: '/blog'
 }
-// Commented out - may use later
-// , {
-//   label: 'Pricing',
-//   to: '/pricing'
-// }
 ]
 
 // Access theme state using useState
