@@ -52,7 +52,7 @@ sections:
     reverse: true
     image:
       src: /images/heroes/systematic-three-phase-approach.png
-      alt: Why ACT?
+      alt: Why ACT™?
     features:
       - name: Reduce Waste
         description: Target high-impact fixes instead of chasing every finding.
