@@ -47,7 +47,7 @@ sections:
         icon: i-heroicons-flag
 
   - title: Why ACT?
-    description: Traditional compliance assessments often waste resources without improving security. ACT helps you close the *right* gaps by aligning efforts with mission objectives.
+    description: Traditional compliance assessments often waste resources without improving security. ACT helps you close the <em>right</em> gaps by aligning efforts with mission objectives.
     orientation: horizontal
     reverse: true
     image:
